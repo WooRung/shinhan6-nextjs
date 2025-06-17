@@ -11,9 +11,12 @@ export interface PostDetailPageProps {
 }
 
 export default async function PostDetailPage({ params }: PostDetailPageProps) {
-  const data = await params;
+  // const data = await params;
+  // const { postId } = data;
 
-  const { postId } = data;
+  const { postId } = await params;
+  console.log("서버 PostDetailPage 렌더링");
+  console.log("서버 params.postId:", postId);
 
   return (
     <div className="container mx-auto text-center p-8">
