@@ -1,12 +1,12 @@
+import PostList from "@/components/blocks/PostList";
+
 export default function PostListPage() {
+  // 서버에서만 실행됩니다. ==> 서버 컴포넌트
+  // 브라우저에서 동작하는 코드는 이곳에 작성할 수 없습니다.
+  console.log("PostListPage 렌더링!");
   return (
     <div>
-      <h1 className="text-4xl font-bold">포스트 리스트</h1>
-      <ul>
-        <li>게시글1</li>
-        <li>게시글2</li>
-        <li>게시글3</li>
-      </ul>
+      <PostList />
     </div>
   );
 }
