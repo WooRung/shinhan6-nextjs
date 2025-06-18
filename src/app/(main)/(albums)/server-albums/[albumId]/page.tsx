@@ -1,3 +1,5 @@
+import AlbumItemClient from "@/components/blocks/AlbumItem/AlbumItem.client";
+
 type ServerAlbumsDetailPageProps = {
   params: Promise<{
     albumId: string;
@@ -24,7 +26,11 @@ export default async function ServerAlbumsDetailPage({
 
   return (
     <div>
-      <p>앨범 제목: {album.title}</p>
+      <AlbumItemClient album={album} />
+      {/* <button className="bg-amber-300 p-3 rounded-2xl cursor-pointer">
+        클릭
+      </button>
+      <p>앨범 제목: {album.title}</p> */}
     </div>
   );
 }

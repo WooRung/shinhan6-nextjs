@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import ServerComp from "./ServerComp";
 
 type Album = {
   id: number;
@@ -16,6 +17,7 @@ export default function ClientAlbumsDetailPage() {
   const params = useParams();
   const { albumId } = params;
   const [album, setAlbum] = useState<Album | null>(null);
+  const [isVisible, setIsVisble] = useState<boolean>(true);
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/albums/${albumId}`)
@@ -31,8 +33,19 @@ export default function ClientAlbumsDetailPage() {
     <div>
       page
       <h1>ClientSide:</h1>
+      {/* <ServerComp /> */}
+      <div>
+        <button
+          className="bg-amber-300 p-3 rounded-2xl cursor-pointer"
+          onClick={() => {
+            setIsVisble((prev) => !prev);
+          }}
+        >
+          클릭
+        </button>
+      </div>
       {/* <p>{album ? album.title : null}</p> */}
-      <p>{album && album.title}</p>
+      <p>{isVisible && album && album.title}</p>
     </div>
   );
 }
