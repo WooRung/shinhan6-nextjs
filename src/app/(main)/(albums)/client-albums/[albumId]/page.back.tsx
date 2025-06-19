@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import ServerComp from "./ServerComp";
+// import ServerComp from "./ServerComp";
 
 type Album = {
   id: number;

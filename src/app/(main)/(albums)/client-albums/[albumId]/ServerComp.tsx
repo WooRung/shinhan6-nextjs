@@ -1,5 +1,5 @@
 // "이 파일은 반드시 서버에서만 동작해야 해." 라고 명시
-import "server-only";
+// import "server-only";
 
 // 이건 단순 예를 위한 파일입니다.
 
