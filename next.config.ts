@@ -6,6 +6,14 @@ const nextConfig: NextConfig = {
 
   //   output: "export",
   //   output: "standalone",
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*", //클라이언트에서 요청하는 경로
+        destination: "http://localhost:3001/api/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
