@@ -3,7 +3,7 @@ import { fetchBoard } from "@/services/board-service";
 import type { Board } from "@/types/api/board";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Button, ButtonGroup, Container } from "react-bootstrap";
 
 export default function BoardItemClient({
   board = null,
@@ -24,8 +24,17 @@ export default function BoardItemClient({
   return (
     <Container>
       <h3 className="text-3xl">{boardData?.title}</h3>
-      <div style={{ minHeight: 500 }} className="p-6 border-2 border-gray-300">
-        {boardData?.content}
+
+      <div className="mt-3 border-top pt-3">
+        <div className="d-flex justify-content-end">
+          <ButtonGroup>
+            <Button variant="outline-primary">수정</Button>
+            <Button variant="outline-danger">삭제</Button>
+          </ButtonGroup>
+        </div>
+        <div className="d-flex justify-content-between border-2 border-gray-100 rounded-3 p-3 mb-3 min-h-[500px]">
+          {board?.content}
+        </div>
       </div>
     </Container>
   );
