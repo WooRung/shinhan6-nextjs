@@ -34,11 +34,19 @@ export default function BoardListClient({
           <ListGroup>
             {boardArr.map((board) => {
               return (
-                <ListGroup.Item key={board._id}>
-                  <div className="flex flex-row justify-between">
-                    <div>{board.title}</div>
-                    <div>{board.createdAt}</div>
-                  </div>
+                <ListGroup.Item key={board._id} action>
+                  <Link
+                    href={`/board/${board._id}`}
+                    style={{
+                      textDecoration: "none",
+                      color: "inherit",
+                    }}
+                  >
+                    <div className="flex flex-row justify-between">
+                      <div>{board.title}</div>
+                      <div>{board.createdAt}</div>
+                    </div>
+                  </Link>
                 </ListGroup.Item>
               );
             })}

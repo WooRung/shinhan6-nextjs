@@ -20,6 +20,13 @@ export async function fetchBoardList(): Promise<Board[]> {
   return data as Board[];
 }
 
+export async function fetchBoard(boardId: string): Promise<Board> {
+  console.log(boardId);
+  const resp = await fetch(`http://localhost:3001/api/board/${boardId}`);
+  const data = await resp.json();
+  return data;
+}
+
 export async function createBoard(data: {
   title: string;
   author: string;
