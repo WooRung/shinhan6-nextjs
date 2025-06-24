@@ -9,9 +9,7 @@ export default function LoginFormClient() {
   const router = useRouter();
 
   const { login, user } = useAuth();
-  if (user) {
-    redirect("/");
-  }
+
   return (
     <Container>
       <div className="max-w-[600px] mx-auto mt-24">

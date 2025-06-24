@@ -39,7 +39,7 @@ export default function AuthProvider({
     setUser(null);
   };
 
-  // 새로고침해도 유지 되려면...
+  // // 새로고침해도 유지 되려면...
   useEffect(() => {
     checkSession().then((user) => {
       setUser(user);
