@@ -33,7 +33,7 @@ export default function BoardItemClient({
           </ButtonGroup>
         </div>
         <div className="d-flex justify-content-between border-2 border-gray-100 rounded-3 p-3 mb-3 min-h-[500px]">
-          {board?.content}
+          {boardData?.content}
         </div>
       </div>
     </Container>
