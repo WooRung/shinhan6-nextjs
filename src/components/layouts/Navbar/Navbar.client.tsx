@@ -1,5 +1,6 @@
 "use client";
 
+import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -20,6 +21,8 @@ export default function NavBarClient({
   navItems,
   rightItems,
 }: NavBarClientProps) {
+  const { user } = useAuth();
+  console.log(user);
   return (
     <>
       {["lg"].map((expand) => (
@@ -55,19 +58,24 @@ export default function NavBarClient({
                 </Nav>
 
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  {rightItems.map((item, idx) => {
-                    return (
-                      <Link
-                        key={item.url}
-                        href={item.url}
-                        style={{ textDecoration: "none" }}
-                      >
-                        <Nav.Link as="div" className="text-black">
-                          {item.title}
-                        </Nav.Link>
-                      </Link>
-                    );
-                  })}
+                  {/* {user?.email} */}
+                  {!user ? (
+                    rightItems.map((item, idx) => {
+                      return (
+                        <Link
+                          key={item.url}
+                          href={item.url}
+                          style={{ textDecoration: "none" }}
+                        >
+                          <Nav.Link as="div" className="text-black">
+                            {item.title}
+                          </Nav.Link>
+                        </Link>
+                      );
+                    })
+                  ) : (
+                    <Nav.Link className="text-black">로그아웃</Nav.Link>
+                  )}
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

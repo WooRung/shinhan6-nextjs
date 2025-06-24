@@ -1,8 +1,17 @@
 "use client";
-import React from "react";
+import useAuth from "@/hooks/useAuth";
+import { redirect, useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 export default function LoginFormClient() {
+  const [userInput, setUserInput] = useState({ email: "", password: "" });
+  const router = useRouter();
+
+  const { login, user } = useAuth();
+  if (user) {
+    redirect("/");
+  }
   return (
     <Container>
       <div className="max-w-[600px] mx-auto mt-24">
@@ -13,7 +22,13 @@ export default function LoginFormClient() {
               Email
             </Form.Label>
             <Col sm="10">
-              <Form.Control type="email" />
+              <Form.Control
+                type="email"
+                onChange={(e) => {
+                  setUserInput((prev) => ({ ...prev, email: e.target.value }));
+                }}
+                value={userInput.email}
+              />
             </Col>
           </Form.Group>
 
@@ -26,11 +41,36 @@ export default function LoginFormClient() {
               Password
             </Form.Label>
             <Col sm="10">
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={(e) => {
+                  setUserInput((prev) => ({
+                    ...prev,
+                    password: e.target.value,
+                  }));
+                }}
+                value={userInput.password}
+              />
             </Col>
           </Form.Group>
           <Col sm="12">
-            <Button>로그인</Button>
+            <Button
+              onClick={() => {
+                if (login) {
+                  login({
+                    email: userInput.email,
+                    password: userInput.password,
+                  }).then((result) => {
+                    if (result) {
+                      router.replace("/");
+                    }
+                  });
+                }
+              }}
+            >
+              로그인
+            </Button>
           </Col>
         </Form>
       </div>

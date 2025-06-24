@@ -29,7 +29,16 @@ export async function loginAction({
     headers: {
       "Content-Type": "application/json",
     },
-    // credentials: "include",
+    body: JSON.stringify({ email, password }),
+    credentials: "include",
+  });
+
+  return await res.json();
+}
+
+export async function checkSession() {
+  const res = await fetch("http://localhost:3001/api/users/me", {
+    credentials: "include",
   });
 
   return await res.json();
