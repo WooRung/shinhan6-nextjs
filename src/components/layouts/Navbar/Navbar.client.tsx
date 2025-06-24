@@ -21,8 +21,7 @@ export default function NavBarClient({
   navItems,
   rightItems,
 }: NavBarClientProps) {
-  const { user } = useAuth();
-  console.log(user);
+  const { user, logout } = useAuth();
   return (
     <>
       {["lg"].map((expand) => (
@@ -74,7 +73,9 @@ export default function NavBarClient({
                       );
                     })
                   ) : (
-                    <Nav.Link className="text-black">로그아웃</Nav.Link>
+                    <Nav.Link className="text-black" onClick={() => logout()}>
+                      로그아웃
+                    </Nav.Link>
                   )}
                 </Nav>
               </Offcanvas.Body>

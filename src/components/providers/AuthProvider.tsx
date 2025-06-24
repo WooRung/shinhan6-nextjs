@@ -1,7 +1,11 @@
 "use client";
 
 import authContext from "@/contexts/auth/authContext";
-import { checkSession, loginAction } from "@/services/auth-service";
+import {
+  checkSession,
+  loginAction,
+  logoutAction,
+} from "@/services/auth-service";
 import { useEffect, useState } from "react";
 
 type User = {
@@ -30,6 +34,11 @@ export default function AuthProvider({
     return false;
   };
 
+  const logout = () => {
+    logoutAction();
+    setUser(null);
+  };
+
   // 새로고침해도 유지 되려면...
   useEffect(() => {
     checkSession().then((user) => {
@@ -38,7 +47,7 @@ export default function AuthProvider({
   }, []);
 
   return (
-    <authContext.Provider value={{ user, login }}>
+    <authContext.Provider value={{ user, login, logout }}>
       {children}
     </authContext.Provider>
   );
