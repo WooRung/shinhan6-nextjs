@@ -7,6 +7,7 @@ export default function useAuth() {
     return {
       login: undefined,
       user: null,
+      logout: () => {},
     };
   }
   return context;

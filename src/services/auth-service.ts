@@ -45,8 +45,7 @@ export async function checkSession() {
 }
 
 export async function logoutAction() {
-  const res = await fetch("http://localhost:3001/api/users/logout", {
+  await fetch("http://localhost:3001/api/users/logout", {
     credentials: "include",
   });
-  return await res.json();
 }
